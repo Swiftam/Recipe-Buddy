@@ -44,7 +44,7 @@ class Admin extends CI_Controller {
 		);
 
 		if ( $recipe_id > 0 ) {
-			array_merge
+			//array_merge
 			$recipe = $this->Recipe->load( $recipe_id );
 		}
 	}
