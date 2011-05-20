@@ -5,3 +5,5 @@
 <?php else: ?>
 <p>Recipes found.</p>
 <?php endif; ?>
+
+<p>[&nbsp;<?=anchor('admin/recipe', 'New Recipe');?>&nbsp;]</p>

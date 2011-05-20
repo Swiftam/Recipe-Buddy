@@ -36,17 +36,37 @@ class Admin extends CI_Controller {
          */
 	public function recipe($recipe_id=0)
 	{
-		$this->load->model('Recipe', $recipe);
+		// LOAD MODELS
+		$this->load->model('Recipe');
 
-		$form_data = array(
-			'name' => '',
-			'text' => ''
-		);
+		// LOAD LIBRARIES
+		$this->load->library(array('form_validation'));
 
+		// PREP FORM DATA
+		$form_data = array('name'=>'', 'text' => '');
+
+		// PARSE EXISTING RECIPE IF APPLICABLE
 		if ( $recipe_id > 0 ) {
 			//array_merge
 			$recipe = $this->Recipe->load( $recipe_id );
 		}
+
+		// SETUP FORM VALIDATION
+		$this->form_validation->set_rules('name', 'Recipe name', 'trim|required');
+		$this->form_validation->set_rules('text', 'Recipe text', 'trim|required');
+		if ( $this->input->post('dorecipe') ) {
+			$form_data['name'] = set_value('name');
+			$form_data['text'] = set_value('text');
+			if ( $this->form_validation->run() ) {
+				$name = $this->input->post('name');
+				$text = $this->input->post('text');
+			}
+		}
+
+		// DISPLAY FORM
+		$this->load->view('header');
+		$this->load->view('admin/recipe', $form_data);
+		$this->load->view('footer');
 	}
 }
 
