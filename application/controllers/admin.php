@@ -56,10 +56,10 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('text', 'Recipe text', 'trim|required');
 		if ( $this->input->post('dorecipe') ) {
 			$form_data['name'] = set_value('name');
-			$form_data['text'] = set_value('text');
+			$form_data['description'] = set_value('description');
 			if ( $this->form_validation->run() ) {
 				$name = $this->input->post('name');
-				$text = $this->input->post('text');
+				$description = $this->input->post('description');
 			}
 		}
 

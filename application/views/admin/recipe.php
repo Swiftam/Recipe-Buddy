@@ -10,7 +10,7 @@
 
 <p>
   <?=form_label('Description:', 'description');?>
-  <?=form_input(array('text' => 'name', 'id' => 'text', 'value' => $text) );?>
+  <?=form_input(array('name' => 'description', 'id' => 'description', 'value' => $description) );?>
 </p>
 
 <p>
