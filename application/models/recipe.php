@@ -13,6 +13,24 @@ class Recipe extends CI_Model
 		$query = $this->db->get('recipes');
 		return $query->result();
 	}
+
+	function insert_recipe($name, $description)
+	{
+		$vals = array(
+			'name' => $name,
+			'description' => $description
+		);
+		$this->db->insert('recipes', $vals);
+	}
+
+	function update_recipe($id, $name, $description)
+	{
+		$vals = array(
+			'name' => $name,
+			'description' => $description
+		);
+		$this->db->update('recipes', $vals, array('id' => $id));
+	}
 }
 
 /* End of file recipe.php */

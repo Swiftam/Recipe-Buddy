@@ -43,7 +43,7 @@ class Admin extends CI_Controller {
 		$this->load->library(array('form_validation'));
 
 		// PREP FORM DATA
-		$form_data = array('name'=>'', 'text' => '');
+		$form_data = array('name'=>'', 'description' => '');
 
 		// PARSE EXISTING RECIPE IF APPLICABLE
 		if ( $recipe_id > 0 ) {
@@ -53,13 +53,15 @@ class Admin extends CI_Controller {
 
 		// SETUP FORM VALIDATION
 		$this->form_validation->set_rules('name', 'Recipe name', 'trim|required');
-		$this->form_validation->set_rules('text', 'Recipe text', 'trim|required');
+		$this->form_validation->set_rules('description', 'Recipe text', 'trim|required');
 		if ( $this->input->post('dorecipe') ) {
 			$form_data['name'] = set_value('name');
 			$form_data['description'] = set_value('description');
 			if ( $this->form_validation->run() ) {
 				$name = $this->input->post('name');
 				$description = $this->input->post('description');
+				$this->Recipe->insert_recipe($name,$description);
+				redirect('admin/recipes');
 			}
 		}
 

@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS recipes_ingredients;
+DROP TABLE IF EXISTS recipes;
+DROP TABLE IF EXISTS ingredients;
+
 -- Create ingredients table
 CREATE TABLE ingredients
 (
@@ -10,7 +14,8 @@ CREATE TABLE recipes
 (
   id int auto_increment primary key,
   name varchar(255) not null,
-  instructions text not null
+  instructions text not null,
+  description text not null
 );
 
 -- Link recipes with their ingredients
